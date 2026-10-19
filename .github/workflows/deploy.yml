@@ -1,16 +1,9 @@
-<<<<<<< HEAD
-name: Publicar portfolio
-
-on:
-  push:
-    branches: ["main"]
-=======
 name: Deploy portfolio to GitHub Pages
 
 on:
   push:
-    branches: [main]
->>>>>>> 6ca65cf (Add updates deploy.yml)
+    branches:
+      - main
   workflow_dispatch:
 
 permissions:
@@ -19,45 +12,10 @@ permissions:
   id-token: write
 
 concurrency:
-  group: pages
+  group: github-pages
   cancel-in-progress: true
 
 jobs:
-<<<<<<< HEAD
-  build-and-deploy:
-    runs-on: ubuntu-latest
-
-    environment:
-      name: github-pages
-      url: ${{ steps.deployment.outputs.page_url }}
-
-    steps:
-      - name: Descargar repositorio
-        uses: actions/checkout@v4
-
-      - name: Configurar Node.js
-        uses: actions/setup-node@v4
-        with:
-          node-version: "22.12.0"
-
-      - name: Instalar dependencias
-        run: npm install
-
-      - name: Compilar portfolio
-        run: npm run build
-
-      - name: Configurar GitHub Pages
-        uses: actions/configure-pages@v6
-
-      - name: Subir web compilada
-        uses: actions/upload-pages-artifact@v5
-        with:
-          path: ./dist
-
-      - name: Publicar
-        id: deployment
-        uses: actions/deploy-pages@v5
-=======
   build:
     runs-on: ubuntu-latest
     steps:
@@ -91,4 +49,3 @@ jobs:
       - name: Deploy to GitHub Pages
         id: deployment
         uses: actions/deploy-pages@v4
->>>>>>> 6ca65cf (Add updates deploy.yml)
